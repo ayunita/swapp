@@ -1,13 +1,48 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
+
+html, body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: 'Exo 2', sans-serif;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+h3 {
+  color: #ba1e68;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+}
+
+button {
+  outline: none;
+  background-color: transparent;
+  border: 2px solid rgba(0,0,0,.8);
+  padding: 8px;
+  border-radius: 8px;
+  margin: 0 16px 8px 0;
+  cursor: pointer;
+  color: rgba(0,0,0,.8);
+}
+
+button:hover {
+  background-color: rgba(0,0,0,.8);
+  color: #fcfbfe;
+  transition: all ease .5s;
+}
+
+button.active {
+  background-color: rgba(0,0,0,.8);
+  color: #fcfbfe;
+  transition: all ease .5s;
+}
+
+section {
+  padding: 8px 0;
 }
