@@ -1,4 +1,4 @@
-#SWapp
+# SWapp
 Try it out here: [https://sw-app-i.netlify.app/](https://sw-app-i.netlify.app/)
 --- 
 # Getting Started
