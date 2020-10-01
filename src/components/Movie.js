@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
 import slugify from "slugify";
-import usePrevious from "../utils/usePrevious";
 
 const GET_FILM = gql`
   query getFilm {
@@ -39,12 +38,8 @@ const Movie = () => {
   let { slug } = useParams();
   const [movie, setMovie] = useState(INITIAL_STATE);
 
-  const prevSlug = usePrevious(slug);
-
   useEffect(() => {
-    if (prevSlug != slug) {
-      setMovie(INITIAL_STATE);
-    }
+    setMovie(INITIAL_STATE);
   }, [slug]);
 
   const { loading, error, data } = useQuery(GET_FILM);
@@ -64,32 +59,49 @@ const Movie = () => {
     const exist = starshipConnection.edges.filter(
       (x) => slugify(x.node.name.toLowerCase()) === slug.toLowerCase()
     );
-    if (exist.length > 0) {
-      return (
-        <button
-          className={title === movie.title ? "active" : ""}
-          key={title}
-          onClick={() =>
-            setMovie({
-              title: title,
-              releaseDate: releaseDate,
-              director: director,
-              producers: producers,
-            })
-          }
-        >
-          🎥 {title}
-        </button>
-      );
-    }
+    return (
+      <>
+        {exist.length > 0 ? (
+          <button
+            className={title === movie.title ? "active" : ""}
+            key={title}
+            onClick={() =>
+              setMovie({
+                title: title,
+                releaseDate: releaseDate,
+                director: director,
+                producers: producers,
+              })
+            }
+          >
+            <span role="img" aria-label="emoji">
+              🎥
+            </span>{" "}
+            {title}
+          </button>
+        ) : null}
+      </>
+    );
   });
 
   return (
     <section>
       {appearance}
-      {movie.releaseDate ? <p><strong>Release date:</strong> {movie.releaseDate}</p> : null}
-      {movie.director ? <p><strong>Director:</strong> {movie.director}</p> : null}
-      {movie.producers ? <p><strong>Producers:</strong> {movie.producers.join(", ")}</p> : null}
+      {movie.releaseDate ? (
+        <p>
+          <strong>Release date:</strong> {movie.releaseDate}
+        </p>
+      ) : null}
+      {movie.director ? (
+        <p>
+          <strong>Director:</strong> {movie.director}
+        </p>
+      ) : null}
+      {movie.producers ? (
+        <p>
+          <strong>Producers:</strong> {movie.producers.join(", ")}
+        </p>
+      ) : null}
     </section>
   );
 };

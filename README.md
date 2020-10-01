@@ -9,11 +9,15 @@ The following software is required to be installed on your system:
 - npm
 
 ## Install 
-`cd swapp`
-`npm install`
+```sh
+$ cd swapp
+$ npm install
+```
 
 ## Run
-`npm start`
+```sh
+$ npm start
+```
 
 ---
 
